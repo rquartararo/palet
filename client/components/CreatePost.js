@@ -17,7 +17,22 @@ class CreatePost extends Component {
         </div>
 
         <div className='form-group'>
+          <label for='materials'>Artist Website Link</label>
+          <input type='text' />
+        </div>
+
+        <div className='form-group'>
           <label for='materials'>Materials</label>
+          <input type='text' />
+        </div>
+
+        <div className='form-group'>
+          <label for='materials'>Materials Type</label>
+          <input type='text' />
+        </div>
+
+        <div className='form-group'>
+          <label for='materials'>Materials Link</label>
           <input type='text' />
         </div>
 
@@ -27,17 +42,11 @@ class CreatePost extends Component {
         </div>
 
         <div className='form-group'>
-          <label for='materials'>Artist Website Link</label>
-          <input type='text' />
-        </div>
-
-        <div className='form-group'>
           <label for='materials'>Process</label>
           <input type='text' />
         </div>
 
         <input type="submit" value="Submit" />
-
 
       </form>
     )
