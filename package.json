@@ -1,0 +1,50 @@
+{
+  "name": "palet",
+  "version": "1.0.0",
+  "description": "A artist platform for share techniques and materials.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development concurrently \"nodemon server/server.js\" \"webpack-dev-server --open --hot\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rquartararo/palet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rquartararo/palet/issues"
+  },
+  "homepage": "https://github.com/rquartararo/palet#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.20",
+    "react-redux": "^7.2.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^3.5.2",
+    "isomorphic-fetch": "^2.2.1",
+    "nodemon": "^1.18.9",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.9"
+  }
+}
