@@ -24,6 +24,7 @@ TABLE NAME: MATERIALS
 CREATE TABLE post (
   post_id SERIAL PRIMARY KEY,
   user_id INTEGER,
+  artist_name VARCHAR(255),
   process VARCHAR(255),
   artist_page VARCHAR(255),
   image_src VARCHAR(255)
