@@ -1,11 +1,10 @@
-import Home from "./components/Home"
-import NavBar from "./components/NavBar"
-import CreatePost from "./components/CreatePost"
-import Post from './components/Post'
+import Home from './components/Home';
+import NavBar from './components/NavBar';
+import CreatePost from './components/CreatePost';
+import Post from './components/Post';
 
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
 
 const Routes = () => {
   return (
@@ -14,12 +13,10 @@ const Routes = () => {
       <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/createPost' exact component={CreatePost} />
-        <Route path='/post' exact component={Post} />
+        <Route path='/post/:userId' exact component={Post} />
       </Switch>
+    </BrowserRouter>
+  );
+};
 
-
-    </BrowserRouter >
-  )
-}
-
-export default Routes
+export default Routes;
