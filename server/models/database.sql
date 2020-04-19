@@ -1,26 +1,6 @@
 /* Line 2 - 7 in this file, just for reference */
 CREATE DATABASE palet;
 
-
-/* TABLE WILL CONSIST OF THE FOLLOWING:
-
-TABLE NAME: 'POSTS'
--id
--name of the artist
--process/description of how to make the art stuff
--materials to make artwork --> this will link to another table 
--URL link to artist's page
--URL link to image source
-
-TABLE NAME: MATERIALS
--id 
--name of the material
--type of material (e.g. paint)
--link to purchase the material
-
-*/
-
-
 CREATE TABLE post (
   post_id SERIAL PRIMARY KEY,
   user_id INTEGER,
@@ -43,3 +23,22 @@ CREATE TABLE material (
   type VARCHAR(255), 
   purchase_link VARCHAR(255) 
 );
+
+
+/* TABLE WILL CONSIST OF THE FOLLOWING:
+
+TABLE NAME: 'POSTS'
+-id
+-name of the artist
+-process/description of how to make the art stuff
+-materials to make artwork --> this will link to another table 
+-URL link to artist's page
+-URL link to image source
+
+TABLE NAME: MATERIALS
+-id 
+-name of the material
+-type of material (e.g. paint)
+-link to purchase the material
+
+*/
