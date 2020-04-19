@@ -8,7 +8,7 @@ const Material = ({ material }) => {
 
   return (
     < div >
-      <h1>Hello</h1>
+      <h1>material</h1>
     </div >
   )
 }
