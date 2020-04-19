@@ -8,23 +8,68 @@ const mainController = {};
 
 mainController.grabAllData = (req, res, next) => {
   // Query the database to get all data from all tables
+
   next();
 }
 
-mainController.addPost = async (req, res, next) => {
+mainController.getMainData = async (req, res, next) => {
+  // Get post_id and image_src of each post in the database
   try {
-    console.log(req.body);
-    console.log(typeof req.body);
+    const mainData = await pool.query(
+      'SELECT post_id, image_src FROM post;',
+    );
+    res.locals.mainData = mainData.rows;
+    return next();
+    
+  } catch (error) {
+    return next({
+      message: 'Error in getMainData middleware',
+      log: {error},
+    });
+  }
+}
+
+mainController.getPostData = async (req, res, next) => {
+  try {
+    // Store the id used to query for specific post/ material data
+    const id = req.query.id;
+    // Get a list of materials with matching post_id
+    const materialList = await pool.query(
+      'SELECT * FROM material WHERE post_id = $1;',
+      [id]
+    );
+    // Get row from post table with matching post_id
+    const post = await pool.query(
+      'SELECT * FROM post WHERE post_id = $1;',
+      [id]
+    );
+    // Add material list to post object
+    const postObject = post.rows[0];
+    postObject.materialList = materialList.rows;
+    // Pass post object to response
+    res.locals.postObject = postObject;
+    return next();    
+
+  } catch (error) {
+    return next({
+      message: 'Error in get post middleware',
+      log: {error},
+    });
+  }
+}
+
+mainController.addPost = async (req, res, next) => {
+  // Add a post to the database
+  try {
     // data will come into req.body as an object, filled with line 34-30 (working on table 'post' for now)
     const { user_id, artist_name, process, artist_page, image_src, materialList } = req.body;
-
     const createPost = await pool.query(
-      'INSERT INTO post(user_id, artist_name, process, artist_page, image_src) VALUES($1, $2, $3, $4, $5);',
+      'INSERT INTO post(user_id, artist_name, process, artist_page, image_src) VALUES($1, $2, $3, $4, $5) RETURNING post_id;',
       [user_id, artist_name, process, artist_page, image_src]
     );
-
-    console.log(createPost.fields)
-
+    // Get the post_id of the post that was just created
+    const post_id = createPost.rows[0].post_id;
+    // Using that post_id, add new materials to the material table with a link to the new post
     for (const material of materialList) {
       const { name, type, purchase_link } = material;
       const createMaterial = await pool.query(

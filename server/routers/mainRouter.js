@@ -14,18 +14,18 @@ router.get('/all',
     console.log(res); // UNDER CONSTRUCTION: REPLACE THIS W/ ANOTHER CODE
   }
 );
-// grab all data from each row (primary/key) of the TABLE post (SELECT ALL DATA FROM A SINGLE ROW IN A TABLE CALLED 'POSTS')
+// grab all data from one post (primary/key) of the TABLE post (SELECT ALL DATA FROM A SINGLE ROW IN A TABLE CALLED 'POSTS')
 router.get('/post',
-  // mainController.getPostData,
+  mainController.getPostData,
   (req, res) => {
-
+    res.status(200).json(res.locals.postObject);
   }
 );
 // grab all images (i.e. image_src) from TABLE post and primary keys/id's (SELECT ALL ID AND IMG_SRC FROM TABLE 'POSTS')
 router.get('/main',
-  // mainController.getMainPage,
+  mainController.getMainData,
   (req, res) => {
-
+    res.status(200).json(res.locals.mainData);
   }
 );
 // add post to database
