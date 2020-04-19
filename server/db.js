@@ -2,6 +2,8 @@
 
 const Pool = require('pg').Pool;
 
+const uri = 'postgres://buutetfr:IRII6Wgus0ucpg-jlJi6QdKDdHvimaqc@drona.db.elephantsql.com:5432/buutetfr';
+
 const pool = new Pool({
   user: 'jimmyphong',
   password: '4500',
@@ -10,4 +12,9 @@ const pool = new Pool({
   database: 'palet'
 })
 
-module.exports = pool;
+const poolRemote = new Pool({
+  connectionString: uri,
+});
+
+// module.exports = pool;
+module.exports = poolRemote;
