@@ -1,57 +1,59 @@
-
-const postArr =
-  [
-    {
-      postId: "rachel1",
-      name: 'Rachel',
-      url: 'https://i.pinimg.com/originals/a2/47/8f/a2478ff279ba9d34aa93a4ac5f119d22.jpg',
-      materialsUsed: [{
+const postArr = [
+  {
+    postId: 'rachel1',
+    name: 'Rachel',
+    url:
+      'https://i.pinimg.com/originals/a2/47/8f/a2478ff279ba9d34aa93a4ac5f119d22.jpg',
+    materialsUsed: [
+      {
         materialName: 'water color',
         materialType: 'paint',
-        materialLink: ''
+        materialLink: '',
       },
-      ]
-    },
-    {
-      postId: 'wenfei2',
-      name: 'Wenfei',
-      url: 'https://i.pinimg.com/originals/a2/47/8f/a2478ff279ba9d34aa93a4ac5f119d22.jpg',
-      materialsUsed: [{
+    ],
+  },
+  {
+    postId: 'wenfei2',
+    name: 'Wenfei',
+    url:
+      'https://i.pinimg.com/originals/a2/47/8f/a2478ff279ba9d34aa93a4ac5f119d22.jpg',
+    materialsUsed: [
+      {
         materialName: 'water color',
         materialType: 'paint',
-        materialLink: ''
+        materialLink: '',
       },
       {
         materialName: 'stone',
         materialType: 'rock',
-        materialLink: ''
-      }
-      ]
-    },
-    {
-      postId: 'jimmy3',
-      name: 'Jimmy',
-      url: 'https://i.pinimg.com/originals/a2/47/8f/a2478ff279ba9d34aa93a4ac5f119d22.jpg'
-    }
-  ]
+        materialLink: '',
+      },
+    ],
+  },
+  {
+    postId: 'jimmy3',
+    name: 'Jimmy',
+    url:
+      'https://i.pinimg.com/originals/a2/47/8f/a2478ff279ba9d34aa93a4ac5f119d22.jpg',
+  },
+];
 
 const materialArr = [
   {
     materialName: 'water color',
     materialType: 'paint',
-    materialLink: ''
+    materialLink: '',
   },
   {
     materialName: 'oil painting',
     materialType: 'paint',
-    materialLink: ''
+    materialLink: '',
   },
   {
     materialName: 'stone',
     materialType: 'rock',
-    materialLink: ''
-  }
+    materialLink: '',
+  },
+];
 
-]
-
-export default postArr
+export default postArr;

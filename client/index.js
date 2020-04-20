@@ -7,7 +7,3 @@ import store from './store'
 
 ReactDOM.render(<Routes />, document.getElementById('root'))
 
-
-//  if you render app, you only render '/' if you render the router, then you can render which ever route you set it to be. In orddr
-//
-//

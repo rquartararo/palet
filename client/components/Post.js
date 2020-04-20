@@ -1,33 +1,52 @@
-import React, { Component, Fragment, useState, useEffect } from "react";
+import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import postArr from './mockData'
-import Material from './Material'
-// import e from "express";
+import Material from './Material';
+import { getMainData, getPostData } from './apiControl';
 
-class Post extends Component {
-  constructor(props) {
-    super(props);
+const Post = (props) => {
+  const [postData, setPostData] = useState({
+    post_id: '',
+    user_id: '',
+    artist_name: '',
+    process: '',
+    artist_page: '',
+    image_src: '',
+    materialList: [],
+  });
 
-  }
+  const { materialList } = postData;
 
-  render() {
+  const [error, setError] = useState(false);
 
-    let selectedPost = postArr.find(el => el.postId === this.props.match.params.postId)
-    let materials = selectedPost.materialsUsed
-    return (
-      <div className="postContainer">
-        <img className='artistImage' src={selectedPost.url}></img>
+  const loadData = () => {
+    getPostData(props.match.params.postId).then((data) => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setPostData(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadData();
+  }, {});
+
+  return (
+    <div>
+      <div className='postContainer'>
+        <img src={postData.image_src} className='artistImage' />
         <div className='artistName'>
-          <h2>{selectedPost.name}</h2>
-        </div>
-        <div>
-          {materials.map((item, i) => {
-            return <Material key={i} item={item} />
+          <h2>{postData.artist_name}</h2>
+          <p>Process: {postData.process}</p>
+          {console.log(materialList)}
+          {materialList.map((item, index) => {
+            return <Material key={index} item={item} />;
           })}
         </div>
-      </div >
-    )
-  }
-}
+      </div>
+    </div>
+  );
+};
 
 export default Post;

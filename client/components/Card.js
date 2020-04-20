@@ -1,17 +1,15 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-
-const Card = ({ artifact }) => {
+const Card = ({ item }) => {
   return (
     <div>
-      <p>{artifact.name}</p>
-      <Link to={`/post/${artifact.postId}`}>
-        <img className='artImage' src={artifact.url}></img>
+      <p>{item.post_id}</p>
+      <Link to={`/post/${item.post_id}`}>
+        <img className='artImage' src={item.image_src}></img>
       </Link>
-
     </div>
-  )
-}
+  );
+};
 
 export default Card;

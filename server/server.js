@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
+const cors = require('cors');
 
 // ============ Require Routers ========================
 
@@ -10,7 +11,8 @@ const mainRouter = require('./routers/mainRouter.js');
 
 // ============ Middleware =============================
 // Body parser
-app.use(express.json()) //accesses req.body
+app.use(express.json()); //accesses req.body
+app.use(cors());
 
 // ============ Define Endpoints/Routes ================
 // Send bundle
@@ -33,11 +35,11 @@ app.use((err, req, res, next) => {
   const defaultErr = {};
   defaultErr.log = 'Express error handler caught unknown middleware error';
   defaultErr.status = 400;
-  defaultErr.message = {err: 'An error has occured'}
+  defaultErr.message = { err: 'An error has occured' };
 
   const errorObj = Object.assign(defaultErr, err);
-  console.log(defaultErr)
-  console.log(errorObj)
+  console.log(defaultErr);
+  console.log(errorObj);
   res.status(errorObj.status).json(errorObj.message);
 });
 
@@ -49,4 +51,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-
