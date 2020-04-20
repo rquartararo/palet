@@ -15,3 +15,12 @@ export const getPostData = (id) => {
     .then((response) => response.json())
     .catch((err) => console.log(err));
 };
+
+export const createPost = (body) => {
+  return fetch(`${API}/post`, {
+    method: 'POST',
+    body: body
+  })
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+};
