@@ -1,16 +1,16 @@
-import React, { Component, Fragment, useState, useEffect } from "react";
+import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import postArr from './mockData'
+import postArr from './mockData';
 
-
-const Material = ({ material }) => {
-  console.log('i am here')
-
+const Material = ({ item }) => {
+  console.log(item);
   return (
-    < div >
-      <h1>material</h1>
-    </div >
-  )
-}
+    <div className='boxed' style={{ border: '1px solid black' }}>
+      <h4>Name: {item.materialName}</h4>
+      <p>Type: {item.materialType}</p>
+      <p>Buy here: {item.materialLink}</p>
+    </div>
+  );
+};
 
 export default Material;
