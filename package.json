@@ -31,7 +31,6 @@
     "redux": "^4.0.5"
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.8",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
@@ -41,6 +40,8 @@
     "css-loader": "^3.5.2",
     "isomorphic-fetch": "^2.2.1",
     "nodemon": "^1.18.9",
+    "pg": "^8.0.2",
+    "redux-devtools-extension": "^2.13.8",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
