@@ -9,7 +9,6 @@ class CreatePost extends Component {
 
   render() {
     return (
-      // <div className="formContainer">
       <form>
         <div className='form-group'>
           <label for='name'>Artist Name</label>

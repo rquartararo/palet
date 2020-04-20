@@ -2,9 +2,7 @@ import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Material from './Material';
 import { getMainData, getPostData } from './apiControl';
-// import e from "express";
 
-//Hey Rachel, I am refactoring this post data into the correct method
 const Post = (props) => {
   const [postData, setPostData] = useState({
     post_id: '',
@@ -45,8 +43,6 @@ const Post = (props) => {
           {materialList.map((item, index) => {
             return <Material key={index} item={item} />;
           })}
-          {/* {postData.materialList.map((i) => console.log(i))} */}
-          {/* {console.log(typeof postData.materialList)} */}
         </div>
       </div>
     </div>
