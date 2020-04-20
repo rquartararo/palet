@@ -1,21 +1,18 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   mode: 'development',
-  entry: {
-    polyfill: 'babel-polyfill',
-    app: './client/index.js',
-  },
+  entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   devServer: {
     port: 8080,
     publicPath: '/dist',
     proxy: {
-      '/api': 'http://localhost:3000',
-    },
+      '/api': 'http://localhost:3000'
+    }
   },
   module: {
     rules: [
@@ -25,16 +22,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['transform-async-to-generator'],
-          },
-        },
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-    ],
-  },
-};
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      }
+    ]
+  }
+
+}
