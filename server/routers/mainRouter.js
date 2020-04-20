@@ -36,17 +36,41 @@ router.post('/post',
   }
 );
 // edit/update row or replace data in that row (i.e. for a single post) in the TABLE post 
-router.put('/',
-  // mainController.updatePost,
+router.put('/post',
+  mainController.updatePost,
   (req, res) => {
-
+    res.sendStatus(200);
   }
 );
 // remove a row (i.e. delete a single post) in the TABLE post
-router.delete('/',
-  // mainController.deletePost,
+router.delete('/post',
+  mainController.deletePost,
   (req, res) => {
+    res.sendStatus(200);
+  }
+);
 
+// Add material
+router.post('/material',
+  mainController.addMaterial,
+  (req, res) => {
+    res.sendStatus(200);
+  }
+);
+
+// Edit material
+router.put('/material',
+  mainController.updateMaterial,
+  (req, res) => {
+    res.sendStatus(200);
+  }
+);
+
+// Delete material
+router.delete('/material',
+  mainController.deleteMaterial,
+  (req, res) => {
+    res.sendStatus(200);
   }
 );
 // ======================================================
