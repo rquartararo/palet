@@ -77,16 +77,64 @@ mainController.addPost = async (req, res, next) => {
         [post_id, name, type, purchase_link]
       );
     }
-
     return next();
+
   } catch (error) {
-    console.log(error);
     return next({
       log: 'Error in the addpost middleware',
       message: { error },
     })
   }
 }
+
+mainController.updatePost = async (req, res, next) => {
+  // Edit a post in the database 
+  const { user_id, artist_name, process, artist_page, image_src } = req.body
+  const { id } = req.query;
+  console.log('req.body: ', req.body);
+  console.log('id: ', id);
+
+  try {
+    const updatePost = await pool.query('UPDATE post SET user_id = $1, artist_name = $2, process = $3, artist_page = $4, image_src = $5 WHERE post_id = $6;',
+      [user_id, artist_name, process, artist_page, image_src, id]
+    );
+    res.json(`Post was updated post_id: ${id}`);
+  } catch (error) {
+    return next({
+      log: 'Error in the updatePost middleware',
+      message: { error },
+    })
+  }
+}
+
+/*
+UPDATE table
+SET column1 = value1,
+    column2 = value2 ,...
+WHERE
+	condition;
+*/
+mainController.deletePost = async (req, res, next) => {
+  // Delete a post in the database 
+  try {
+    const { id } = req.query;
+    const deletePost = await pool.query(
+      'DELETE FROM post WHERE post_id = $1;', //need to delete data from TABLE materialList as well
+      [id]
+    );
+    const deleteMaterial = await pool.query(
+      'DELETE FROM material WHERE post_id = $1;', //need to delete data from TABLE materialList as well
+      [id]
+    );
+    res.json('Post was deleted, along with the following: user_id, artist_name, process, artist_page, image_src')
+  } catch (error) {
+    return next({
+      log: 'Error in the deletePost middleware',
+      message: { error },
+    })
+  }
+}
+
 
 // ================================================================
 module.exports = mainController;
