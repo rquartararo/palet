@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
+const cors = require('cors');
 
 // ============ Require Routers ========================
 
@@ -11,6 +12,7 @@ const mainRouter = require('./routers/mainRouter.js');
 // ============ Middleware =============================
 // Body parser
 app.use(express.json()); //accesses req.body
+app.use(cors());
 
 // ============ Define Endpoints/Routes ================
 // Send bundle
