@@ -2,6 +2,7 @@ import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Material from './Material';
 import { getMainData, getPostData } from './apiControl';
+import { deletePostData } from './apiControl'
 
 const Post = (props) => {
   const [postData, setPostData] = useState({
@@ -32,21 +33,26 @@ const Post = (props) => {
     loadData();
   }, {});
 
+  const deletePost = () => {
+    deletePostData(postData.post_id);
+  }
+
   return (
     //renders post data and materials components
-    <div>
-      <div className='postContainer'>
-        <img src={postData.image_src} className='artistImage' />
-        <div className='postInfo'>
-          <h2>{postData.artist_name}</h2>
-          <p>Website: {postData.artist_page}</p>
-          <p>Process: {postData.process}</p>
-        </div>
+    <div className='postContainer'>
+      <img src={postData.image_src} className='artistImage' />
+      <div className='postInfo'>
+        <h2>{postData.artist_name}</h2>
+        <p>Website: {postData.artist_page}</p>
+        <p>Process: {postData.process}</p>
+      </div>
+      <div className="materialsList">
         <h4> Materials Used</h4>
         {materialList.map((item, index) => {
           return <Material key={index} item={item} />;
         })}
       </div>
+      <Link to="/"><button className="deletePostBtn" onClick={deletePost}>Delete Post</button></Link>
     </div>
   );
 };

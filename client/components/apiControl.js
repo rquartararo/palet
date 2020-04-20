@@ -38,3 +38,11 @@ export const createPost = (post) => {
     .catch((err) => console.log(err));
 };
 
+//delete post 
+export const deletePostData = (id) => {
+  return fetch(`${API}/post?id=${id}`, {
+    method: 'DELETE',
+  })
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+};
