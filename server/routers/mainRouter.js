@@ -29,7 +29,7 @@ router.get('/main',
   }
 );
 // add post to database
-router.post('/addPost',
+router.post('/post',
   mainController.addPost,
   (req, res) => {
     res.sendStatus(200);
