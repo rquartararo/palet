@@ -1,51 +1,55 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import postArr from './mockData';
 import Material from './Material';
-import { getMainData } from './apiControl';
+import { getMainData, getPostData } from './apiControl';
 // import e from "express";
 
+//Hey Rachel, I am refactoring this post data into the correct method
 const Post = (props) => {
-  const [postData, setPostData] = useState([]);
+  const [postData, setPostData] = useState({
+    post_id: '',
+    user_id: '',
+    artist_name: '',
+    process: '',
+    artist_page: '',
+    image_src: '',
+    materialList: [],
+  });
+
+  const { materialList } = postData;
+
   const [error, setError] = useState(false);
 
   const loadData = () => {
-    getPostData().then((data) => {
+    getPostData(props.match.params.postId).then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
-        setMainData(data);
+        setPostData(data);
       }
     });
   };
 
   useEffect(() => {
     loadData();
-  }, []);
-
-  const postId = props.match.params.postId * 1;
-  let selectedPost = postData.find((el) => {
-    return el.post_id === postId;
-  });
-  console.log(selectedPost);
+  }, {});
 
   return (
     <div>
-      <p>hello</p>
+      <div className='postContainer'>
+        <img src={postData.image_src} className='artistImage' />
+        <div className='artistName'>
+          <h2>{postData.artist_name}</h2>
+          <p>Process: {postData.process}</p>
+          {console.log(materialList)}
+          {materialList.map((item, index) => {
+            return <Material key={index} item={item} />;
+          })}
+          {/* {postData.materialList.map((i) => console.log(i))} */}
+          {/* {console.log(typeof postData.materialList)} */}
+        </div>
+      </div>
     </div>
-    // <div className='postContainer'>
-    //   {`this is the ` + console.log(selectedPost)}
-    //   <img className='artistImage' src={selectedPost.image_src}></img>
-    //   <div className='artistName'>
-    //     <h2>{selectedPost.artist_name}</h2>
-    //   </div>
-    //   {/* <div>
-    //     {materials.map((item, i) => {
-    //       return <Material key={i} item={item} />;
-    //     })}
-    //   </div> */}
-    //   <p className='process'>Process: {selectedPost.process}</p>
-    // </div>
   );
 };
 

@@ -1,13 +1,13 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import postArr from './mockData';
 
-const Material = ({ material }) => {
-  console.log('i am here');
+const Material = ({ item }) => {
+  console.log(item);
 
   return (
-    <div>
-      <h1>material</h1>
+    <div style={{ background: 'lightblue' }}>
+      <p>{item.name}</p>
+      <p>{item.type}</p>
+      <p> {item.purchase_link}</p>
     </div>
   );
 };
