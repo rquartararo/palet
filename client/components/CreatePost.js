@@ -1,10 +1,12 @@
 import React, { Component, Fragment, useState } from "react";
 import { Link, withRouter } from 'react-router-dom';
+import { createPost } from './apiControl'
 
-
+// Create new post and change its state to what the user inputted
 const CreatePost = () => {
 
   const [newPostInfo, setNewPostInfo] = useState({
+    user_id: 1,
     artist_name: "",
     process: "",
     artist_page: "",
@@ -17,21 +19,10 @@ const CreatePost = () => {
 
   // const [materialList, setMaterialList] = useState([])
 
+  // Destructuring information that was received from the user
   const { artist_name, process, artist_page, image_src, materialList, material_name, material_type, material_link } = newPostInfo;
 
-  console.log(newPostInfo)
-
-  // onSubmitForm = async (e) => {
-  // e.preventDefault();
-  // try {
-  //   // fetching data 
-  //   const body = {}
-  // } catch (error) {
-
-  // }
-  // }
-
-
+  // Handles key strokes and set state of the property to user input 
   const handleChange = (key, event) => {
     setNewPostInfo({
       ...newPostInfo,
@@ -39,8 +30,10 @@ const CreatePost = () => {
     });
   }
 
+  // Add material to new post
   const submitMaterial = (event) => {
     event.preventDefault();
+    // Create new material
     let newMaterial = {
       name: material_name,
       type: material_type,
@@ -48,27 +41,36 @@ const CreatePost = () => {
     };
     setNewPostInfo({
       ...newPostInfo,
+      // Add new material to material list in state
       materialList: [...materialList, newMaterial],
+      // Reset forms regarding materials
       material_type: '',
       material_name: '',
       material_link: '',
     });
   }
 
-  console.log(materialList)
+  // Adds post to database
+  const postSubmit = (event) => {
+    event.preventDefault();
+    // Send post data to the server
+    createPost(newPostInfo)
+      .then(data => {
+        // Reset forms regarding posts
+        setNewPostInfo({
+          ...newPostInfo,
+          artist_name: "",
+          process: "",
+          artist_page: "",
+          image_src: "",
+        });
+      });
+  };
+
 
   return (
-    <form /*onSubmit={onSubmitForm}*/>
-      <div className='form-group'>
-        <label for='name'>Artist Name</label>
-        <input type='text' value={artist_name} onChange={e => handleChange('artist_name', e)} />
-      </div>
-
-      <div className='form-group'>
-        <label for='materials'>Artist Website Link</label>
-        <input type='text' value={artist_page} onChange={e => handleChange('artist_page', e)} />
-      </div>
-
+    <Fragment>
+      {/* form to sumbit each material */}
       <form className='materialsForm' onSubmit={submitMaterial}>
         <div className='form-group'>
           <label for='materials'>Materials</label>
@@ -88,19 +90,31 @@ const CreatePost = () => {
         <input type="submit" value="Add Material" />
       </form>
 
-      <div className='form-group'>
-        <label for='materials'>Art Image Link</label>
-        <input type='text' value={image_src} onChange={e => handleChange('image_src', e)} />
-      </div>
+      {/* form to submit then entire post. Render this before render the form above. Add some logic? */}
+      <form className="mainForm" onSubmit={postSubmit}>
+        <div className='form-group'>
+          <label for='name'>Artist Name</label>
+          <input type='text' value={artist_name} onChange={e => handleChange('artist_name', e)} />
+        </div>
 
-      <div className='form-group'>
-        <label for='materials'>Process</label>
-        <input type='text' value={process} onChange={e => handleChange('process', e)} />
-      </div>
+        <div className='form-group'>
+          <label for='materials'>Artist Website Link</label>
+          <input type='text' value={artist_page} onChange={e => handleChange('artist_page', e)} />
+        </div>
 
-      <input type="submit" value="Submit" />
+        <div className='form-group'>
+          <label for='materials'>Art Image Link</label>
+          <input type='text' value={image_src} onChange={e => handleChange('image_src', e)} />
+        </div>
 
-    </form>
+        <div className='form-group'>
+          <label for='materials'>Process</label>
+          <input type='text' value={process} onChange={e => handleChange('process', e)} />
+        </div>
+
+        <input type="submit" value="Submit" />
+      </form>
+    </Fragment>
   )
 }
 

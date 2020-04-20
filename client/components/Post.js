@@ -33,17 +33,19 @@ const Post = (props) => {
   }, {});
 
   return (
+    //renders post data and materials components
     <div>
       <div className='postContainer'>
         <img src={postData.image_src} className='artistImage' />
-        <div className='artistName'>
+        <div className='postInfo'>
           <h2>{postData.artist_name}</h2>
+          <p>Website: {postData.artist_page}</p>
           <p>Process: {postData.process}</p>
-          {console.log(materialList)}
-          {materialList.map((item, index) => {
-            return <Material key={index} item={item} />;
-          })}
         </div>
+        <h4> Materials Used</h4>
+        {materialList.map((item, index) => {
+          return <Material key={index} item={item} />;
+        })}
       </div>
     </div>
   );

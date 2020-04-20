@@ -6,11 +6,16 @@ import Post from './components/Post';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+//In this application, we have adopted React Router in order to create resusable, functional components throughout the UI. I
+
 const Routes = () => {
+  //Routes function allow the routing of different components in accordance with the <path> specified. 
+  //BrowserRouter is a wrapping utility that creates a fragment 
   return (
     <BrowserRouter>
       <NavBar />
       <Switch>
+        {/* Here, we  */}
         <Route path='/' exact component={Home} />
         <Route path='/createPost' exact component={CreatePost} />
         <Route path='/post/:postId' exact component={Post} />
