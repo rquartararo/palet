@@ -9,7 +9,6 @@ const Home = () => {
   const [error, setError] = useState(false);
 
   const loadData = () => {
-    console.log(getMainData());
     getMainData().then((data) => {
       if (data.error) {
         setError(data.error);

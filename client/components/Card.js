@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { API } from './config';
 
-const Card = ({ item }) => {
+const Card = ({ artifact }) => {
   return (
     <div>
-      <p>{item.post_id}</p>
-      <Link to={`/post/${item.post_id}`}>
-        <img className='artImage' src={item.image_src}></img>
+      <p>{artifact.name}</p>
+      <Link to={`/post/${artifact.postId}`}>
+        <img className='artImage' src={artifact.url}></img>
       </Link>
     </div>
   );

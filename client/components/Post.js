@@ -6,11 +6,11 @@ import { getMainData } from './apiControl';
 // import e from "express";
 
 const Post = (props) => {
-  const [mainData, setMainData] = useState([]);
+  const [postData, setPostData] = useState([]);
   const [error, setError] = useState(false);
 
   const loadData = () => {
-    getMainData().then((data) => {
+    getPostData().then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
@@ -24,7 +24,7 @@ const Post = (props) => {
   }, []);
 
   const postId = props.match.params.postId * 1;
-  let selectedPost = mainData.find((el) => {
+  let selectedPost = postData.find((el) => {
     return el.post_id === postId;
   });
   console.log(selectedPost);
