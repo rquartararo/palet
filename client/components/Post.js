@@ -4,6 +4,8 @@ import Material from './Material';
 import { getMainData, getPostData } from './apiControl';
 import { deletePostData } from './apiControl'
 
+
+
 const Post = (props) => {
   const [postData, setPostData] = useState({
     post_id: '',
@@ -43,7 +45,7 @@ const Post = (props) => {
       <img src={postData.image_src} className='artistImage' />
       <div className='postInfo'>
         <h2>{postData.artist_name}</h2>
-        <p>Website: {postData.artist_page}</p>
+        <a href={postData.artist_page}>Artist Website</a>
         <p>Process: {postData.process}</p>
       </div>
       <div className="materialsList">
@@ -52,7 +54,7 @@ const Post = (props) => {
           return <Material key={index} item={item} />;
         })}
       </div>
-      <Link to="/"><button className="deletePostBtn" onClick={deletePost}>Delete Post</button></Link>
+      <Link to="/"><a className="deletePostBtn" onClick={deletePost}>Delete Post</a></Link>
     </div>
   );
 };

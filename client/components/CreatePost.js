@@ -69,7 +69,7 @@ const CreatePost = () => {
 
 
   return (
-    <Fragment>
+    <div className="createPostContainer">
       {/* form to sumbit each material */}
       <form className='materialsForm' onSubmit={submitMaterial}>
         <div className='form-group'>
@@ -114,7 +114,7 @@ const CreatePost = () => {
 
         <input type="submit" value="Submit" />
       </form>
-    </Fragment>
+    </div>
   )
 }
 
