@@ -1,2 +1,2 @@
 # palet
-A artist platform for shareing materials and techniques. 
+An artist platform for shareing materials and techniques. 
